@@ -13,12 +13,14 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EnquiryFormController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\PackageMasterController;
 use App\Http\Controllers\PackageCategoryController;
 use App\Http\Controllers\WebSiteElementsController;
 use App\Http\Controllers\OurServicesModelController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\TeamInfoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -79,6 +81,14 @@ Route::get("view-about-info", [AboutUsController::class, "viewAboutUs"])->name("
 Route::post("save-about-info", [AboutUsController::class, "saveAboutUs"])->name("saveAbout");
 Route::post("get-about-info", [AboutUsController::class, "aboutData"])->name("getAboutData");
 
+
+Route::get("view-partner", [PartnerController::class, "viewPartner"])->name("viewPartner");
+Route::post("save-partner", [PartnerController::class, "savePartner"])->name("savePartner");
+Route::post("get-partner", [PartnerController::class, "getPartner"])->name("getPartner");
+
+Route::get("view-hero-banner", [HeroBannerController::class, "viewBanner"])->name("viewHeroBanner");
+Route::post("save-hero-banner", [HeroBannerController::class, "saveBanner"])->name("saveHeroBanner");
+Route::post("get-hero-banner", [HeroBannerController::class, "getBanner"])->name("getHeroBanner");
 
 });
 

@@ -88,6 +88,7 @@ class TeamInfoController extends Controller
     {
         
             $AboutUs = TeamInfo::find($request->id);
+        if($AboutUs){
             $image_url = $AboutUs->image;
             if($request->file('image')){
                 $aboutImage = $this->ImageUpload($request);
@@ -108,9 +109,10 @@ class TeamInfoController extends Controller
             $AboutUs->linkedin_link = $request->linkedin_link;
             $AboutUs->status = 1;
             $AboutUs->save();
-
             $return = $this->returnMessage("Saved successfully.", true);
-        
+        }else{
+            $return = ["status"=>false,"message"=>"Details not found.","data"=>null];
+        }
         return $return;
     }
 

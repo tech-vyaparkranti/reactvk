@@ -68,7 +68,7 @@ class BlogRequest extends FormRequest
                     Blog::BLOG_SORTING => 'nullable|integer',
                     Blog::BLOG_STATUS => 'required|in:live,disabled',
                     Blog::IMAGE => 'nullable|image|mimes:jpeg,png,jpg',
-                    'blog_images' => 'required|array',
+                    'blog_images' => 'required|array|max:4',
                     'blog_images.*' => 'image',                                   
                 ];
 
@@ -85,6 +85,8 @@ class BlogRequest extends FormRequest
                     Blog::BLOG_SORTING => 'nullable|integer',
                     Blog::BLOG_STATUS => 'required|in:live,disabled',
                     Blog::IMAGE => 'nullable|image|mimes:jpeg,png,jpg',
+                    'blog_images' => 'nullable|array|max:4',
+                    'blog_images.*' => 'image', 
                 ];
 
             default:

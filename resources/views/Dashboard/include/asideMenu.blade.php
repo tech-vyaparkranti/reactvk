@@ -117,6 +117,19 @@
                     <div data-i18n="Analytics">Manage About Us</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('viewPartner') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Partner's</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('viewHeroBanner') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Hero Banner</div>
+                </a>
+            </li>
             
        
     </ul>

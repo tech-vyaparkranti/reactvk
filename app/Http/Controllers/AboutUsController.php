@@ -82,6 +82,7 @@ class AboutUsController extends Controller
     {
         
             $updateModel = AboutUs::find($request->id);
+        if($updateModel){
             $image_url = $updateModel->image;
             if($request->file('image')){
                 $aboutImage = $this->ImageUpload($request);
@@ -98,7 +99,9 @@ class AboutUsController extends Controller
             $updateModel->status = 1;
             $updateModel->save();
             $return = $this->returnMessage("Saved successfully.", true);
-        
+        }else{
+                $return = ["status"=>false,"message"=>"Details not found.","data"=>null];
+            }
         return $return;
     }
 

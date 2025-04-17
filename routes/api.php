@@ -9,6 +9,9 @@ use App\Http\Controllers\TestModelController;
 use App\Http\Controllers\WebSiteElementsController;
 use App\Http\Controllers\TeamInfoController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\HeroBannerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +43,11 @@ Route::get('get-about',[AboutUsController::class,'getAbout']);
 // team api
 Route::get('get-team',[TeamInfoController::class,'getTeam']);
 Route::get('team-details/{id}',[TeamInfoController::class,'teamDetail']);
+
+// Partner's api
+Route::get('get-partner',[PartnerController::class,'getPartners']);
+Route::get('partner-details/{id}',[PartnerController::class,'PartnerDetails']);
+
+// hero Banners Api 
+Route::get('get-banner',[HeroBannerController::class,'getHeroBanner']);
+Route::get('banner-details/{id}',[HeroBannerController::class,'bannerDetails']);
