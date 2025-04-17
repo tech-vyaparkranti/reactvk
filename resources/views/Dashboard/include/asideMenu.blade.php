@@ -130,6 +130,12 @@
                     <div data-i18n="Analytics">Manage Hero Banner</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('viewTestimonial') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Testimonial</div>
+                </a>
+            </li>
             
        
     </ul>

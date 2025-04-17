@@ -10,6 +10,7 @@ use App\Http\Controllers\WebSiteElementsController;
 use App\Http\Controllers\TeamInfoController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\HeroBannerController;
 
 
@@ -51,3 +52,7 @@ Route::get('partner-details/{id}',[PartnerController::class,'PartnerDetails']);
 // hero Banners Api 
 Route::get('get-banner',[HeroBannerController::class,'getHeroBanner']);
 Route::get('banner-details/{id}',[HeroBannerController::class,'bannerDetails']);
+
+// testimonial 
+Route::get('get-testimonial',[TestimonialController::class,'testimonialData']);
+Route::get('testimonial-details/{id}',[TestimonialController::class,'TestimonialDetails']);

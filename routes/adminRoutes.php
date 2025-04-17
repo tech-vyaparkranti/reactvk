@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonateController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\OurGuestController;
 use App\Http\Controllers\ContactUsController;
@@ -90,5 +91,9 @@ Route::get("view-hero-banner", [HeroBannerController::class, "viewBanner"])->nam
 Route::post("save-hero-banner", [HeroBannerController::class, "saveBanner"])->name("saveHeroBanner");
 Route::post("get-hero-banner", [HeroBannerController::class, "getBanner"])->name("getHeroBanner");
 
+
+Route::get("view-testimonial", [TestimonialController::class, "viewTestimonial"])->name("viewTestimonial");
+Route::post("save-testimonial", [TestimonialController::class, "saveTestimonial"])->name("saveTestimonial");
+Route::post("get-testimonial", [TestimonialController::class, "getTestimonial"])->name("getTestimonial");
 });
 

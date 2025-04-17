@@ -3,11 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PartnerRequest extends FormRequest
+class TestimonialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +25,16 @@ class PartnerRequest extends FormRequest
     {
         return [
             'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
-            'sorting'=>"bail|required_if:action,update,insert|nullable",
+            'name'=>"bail|required_if:action,update,insert|nullable",
+            'description'=>"bail|required_if:action,update,insert|nullable",
+            'designation'=>"bail|required_if:action,update,insert|nullable",
+            'review'=>"bail|required_if:action,update,insert|nullable|max:5|numeric",
             'status' =>"bail|required_if:action,update,insert|nullable",
+            'sorting' =>"bail|required_if:action,update,insert|nullable|numeric",
             'image' =>"bail|required_if:action,insert|nullable|image",
         ];
-        
     }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
