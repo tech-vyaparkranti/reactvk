@@ -23,6 +23,7 @@ use App\Http\Controllers\OurServicesModelController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\TeamInfoController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get("login",[AdminController::class,"Login"])->name("login");
@@ -95,5 +96,10 @@ Route::post("get-hero-banner", [HeroBannerController::class, "getBanner"])->name
 Route::get("view-testimonial", [TestimonialController::class, "viewTestimonial"])->name("viewTestimonial");
 Route::post("save-testimonial", [TestimonialController::class, "saveTestimonial"])->name("saveTestimonial");
 Route::post("get-testimonial", [TestimonialController::class, "getTestimonial"])->name("getTestimonial");
+
+Route::get("view-gallery", [GalleryController::class, "viewGallery"])->name("viewGallery");
+Route::post("save-gallery", [GalleryController::class, "saveGallery"])->name("saveGallery");
+Route::post("get-gallery", [GalleryController::class, "getGallery"])->name("getGallery");
+
 });
 

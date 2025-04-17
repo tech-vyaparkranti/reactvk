@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class HeroBannerRequest extends FormRequest
+class GalleryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ class HeroBannerRequest extends FormRequest
     {
         return [
             'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
-            'title'=>"bail|required_if:action,update,insert|nullable",
-            'sub_title'=>"bail|required_if:action,update,insert|nullable",
+            'filter_category'=>"bail|required_if:action,update,insert|nullable",
             'status' =>"bail|required_if:action,update,insert|nullable",
+            'sorting' =>"bail|required_if:action,update,insert|nullable|numeric",
             'image' =>"bail|required_if:action,insert|nullable|image",
         ];
     }

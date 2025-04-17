@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TeamRequest extends FormRequest
 {
@@ -27,5 +29,17 @@ class TeamRequest extends FormRequest
                 'designation' => "bail|required_if:action,update,insert|nullable|string",
                 'position' => "bail|required_if:action,update,insert|nullable|string",
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'status' => false,
+                'message' => $validator->errors()->first(),
+                'errors' => $validator->errors(),
+                'data' => null,
+            ], 422)
+        );
     }
 }

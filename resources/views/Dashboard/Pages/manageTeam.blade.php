@@ -39,7 +39,7 @@
 
         </x-card-element>
 
-        <x-card-element header="About Data">
+        <x-card-element header="Team Data">
             <x-data-table>
 
             </x-data-table>
@@ -91,6 +91,16 @@
                         orderable: false,
                         searchable: false,
                         title: "Image Local"
+                    },
+                    {
+                        data: 'designation',
+                        name: 'designation',
+                        title: "Designation"
+                    },
+                    {
+                        data: 'position',
+                        name: 'position',
+                        title: "Position"
                     },
                     {
                         data: 'action',
@@ -173,7 +183,6 @@
             }
         }
 
-
         $(document).ready(function() {
             $("#submitForm").on("submit", function() {
                 var form = new FormData(this);
@@ -191,6 +200,15 @@
                             errorMessage(response.message);
                         }
 
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            const errors = xhr.responseJSON.errors;
+                            const allMessages = Object.values(errors).flat().join('<br>');
+                            errorMessage(allMessages);
+                        } else {
+                            errorMessage("Something went wrong");
+                        }
                     },
                     failure: function(response) {
                         errorMessage(response.message);

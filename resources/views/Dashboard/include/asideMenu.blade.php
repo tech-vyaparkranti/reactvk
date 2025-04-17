@@ -137,6 +137,13 @@
                 </a>
             </li>
             
+            <li class="menu-item">
+                <a href="{{ route('viewGallery') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Gallery</div>
+                </a>
+            </li>
+            
        
     </ul>
 </aside>
