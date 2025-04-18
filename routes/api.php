@@ -45,6 +45,7 @@ Route::get('blog-details/{id}',[BlogController::class,'blogDetails']);
 Route::get('get-service',[OurServicesModelController::class,'getService']);
 Route::get('service-details/{id}',[OurServicesModelController::class,'serviceDetail']);
 
+
 // About Api 
 Route::get('get-about',[AboutUsController::class,'getAbout']);
 // Route::get('about-details/{id}',[AboutUsController::class,'aboutDetails']);
