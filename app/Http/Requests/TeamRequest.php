@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class TeamRequest extends FormRequest
 {
@@ -23,11 +24,19 @@ class TeamRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id');   
         return [
+                'id' => 'bail|required_if:action,update,enable,disable|nullable',
                 'image' => "bail|required_if:action,insert|nullable|image|max:2048",
                 'name' => "bail|required_if:action,update,insert|nullable|string|max:500",
                 'designation' => "bail|required_if:action,update,insert|nullable|string",
-                'position' => "bail|required_if:action,update,insert|nullable|string",
+                'position' => [
+                    'bail',
+                    'required_if:action,update,insert',
+                    'nullable',
+                    'numeric',
+                    Rule::unique('team_infos', 'position')->ignore($id),
+                ],
         ];
     }
 

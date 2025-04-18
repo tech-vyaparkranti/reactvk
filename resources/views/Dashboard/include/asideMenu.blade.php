@@ -100,9 +100,15 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ route('enquiryAdminPage') }}" class="menu-link">
+                <a href="{{ route('viewSubscribe') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-message-alt-check"></i>
-                    <div data-i18n="Analytics">Enquiry Data</div>
+                    <div data-i18n="Analytics">Subscribe Data</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewSeo') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-message-alt-check"></i>
+                    <div data-i18n="Analytics">SEO Data</div>
                 </a>
             </li>
             <li class="menu-item">
@@ -141,6 +147,24 @@
                 <a href="{{ route('viewGallery') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-category"></i>
                     <div data-i18n="Analytics">Manage Gallery</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewTechnology') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Technology</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewVacancy') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Vacancy</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewGrowth') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Team Growth Journey</div>
                 </a>
             </li>
             

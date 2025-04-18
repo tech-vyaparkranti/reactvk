@@ -38,6 +38,8 @@ class WebSiteElementsController extends Controller
         "packages_short_description",
         "blog_heading",
         "blog_short_description",
+        'seo_image',
+        'contact_timing',
     ];
     public function addWebSiteElements()
     {
@@ -173,6 +175,18 @@ class WebSiteElementsController extends Controller
     {
 
         $elements = WebSiteElements::where('status','1')->get();
+        $elementData = $elements->pluck('element_details', 'element')->toArray();
+        $data = [
+            'status' => true,
+            'success' => true,
+            'elements' => $elementData,
+        ];
+        return response()->json($data, 200);
+    }
+
+    public function socialMedia()
+    {
+        $elements = WebSiteElements::where('status','1')->whereIn('element',['facebook_link','youtube_link','instagram_link','twitter','linkedin','whatsapp_number'])->get();
         $elementData = $elements->pluck('element_details', 'element')->toArray();
         $data = [
             'status' => true,

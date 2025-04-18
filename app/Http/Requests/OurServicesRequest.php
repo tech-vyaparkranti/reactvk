@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class OurServicesRequest extends FormRequest
 {
@@ -29,13 +30,22 @@ class OurServicesRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->input('id');   
+
         return [
             OurServicesModel::ID=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
             OurServicesModel::SERVICE_NAME=>"bail|required_if:action,update,insert|nullable|string|max:500",
             OurServicesModel::SERVICE_DETAILS=>"bail|nullable|string",
             OurServicesModel::BANNER_IMAGE=>"bail|required_if:action,insert|nullable|image|max:2048",
             OurServicesModel::SHORT_DESC=>"bail|required_if:action,update,insert|nullable",
-            OurServicesModel::POSITION=>"required_if:action,update,insert|numeric|gt:0",
+            OurServicesModel::POSITION => [
+                    'bail',
+                    'required_if:action,update,insert',
+                    'nullable',
+                    'gt:0',
+                    'numeric',
+                    Rule::unique('our_services', 'position')->ignore($id),
+                ],
             "action"=>"bail|required|in:insert,update,enable,disable",
             'service_image' => 'bail|array|required_if:action,insert|nullable',
             'service_image.*' => 'image',                                     
@@ -48,7 +58,6 @@ class OurServicesRequest extends FormRequest
             "position.required_if"=>"Sorting number is required.",
             "position.strnumericing"=>"Sorting number should be a number.",
             "position.gt"=>"Sorting number should be greater than 0.",
-
         ];
     }
 

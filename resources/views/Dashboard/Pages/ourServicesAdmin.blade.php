@@ -246,6 +246,15 @@
                                     errorMessage(response.message);
                                 }
                             },
+                            error: function(xhr) {
+                                if (xhr.status === 422) {
+                                    const errors = xhr.responseJSON.errors;
+                                    const allMessages = Object.values(errors).flat().join('<br>');
+                                    errorMessage(allMessages);
+                                } else {
+                                    errorMessage("Something went wrong");
+                                }
+                            },
                             failure: function(response) {
                                 errorMessage(response.message);
                             }
@@ -276,6 +285,15 @@
                         }
 
                     },
+                    error: function(xhr) {
+                                if (xhr.status === 422) {
+                                    const errors = xhr.responseJSON.errors;
+                                    const allMessages = Object.values(errors).flat().join('<br>');
+                                    errorMessage(allMessages);
+                                } else {
+                                    errorMessage("Something went wrong");
+                                }
+                            },
                     failure: function(response) {
                         errorMessage(response.message);
                     }

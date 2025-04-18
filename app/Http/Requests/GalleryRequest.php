@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
+
 
 class GalleryRequest extends FormRequest
 {
@@ -23,12 +25,19 @@ class GalleryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id');   
         return [
             'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
             'filter_category'=>"bail|required_if:action,update,insert|nullable",
             'status' =>"bail|required_if:action,update,insert|nullable",
-            'sorting' =>"bail|required_if:action,update,insert|nullable|numeric",
             'image' =>"bail|required_if:action,insert|nullable|image",
+            'sorting' => [
+                    'bail',
+                    'required_if:action,update,insert',
+                    'nullable',
+                    'numeric',
+                    Rule::unique('galleries', 'sorting')->ignore($id),
+                ],
         ];
     }
 

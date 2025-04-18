@@ -25,6 +25,12 @@ use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\TeamInfoController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\GrowthJourneyController;
+use App\Http\Controllers\SeoController;
+use App\Http\Controllers\SubscribeController;
+
 
 Route::get("login",[AdminController::class,"Login"])->name("login");
 Route::post("AdminUserLogin",[AdminController::class,"AdminLoginUser"])->name("AdminLogin");
@@ -100,6 +106,26 @@ Route::post("get-testimonial", [TestimonialController::class, "getTestimonial"])
 Route::get("view-gallery", [GalleryController::class, "viewGallery"])->name("viewGallery");
 Route::post("save-gallery", [GalleryController::class, "saveGallery"])->name("saveGallery");
 Route::post("get-gallery", [GalleryController::class, "getGallery"])->name("getGallery");
+
+Route::get("view-technology", [TechnologyController::class, "viewTechnology"])->name("viewTechnology");
+Route::post("save-technology", [TechnologyController::class, "saveTechnology"])->name("saveTechnology");
+Route::post("get-technology", [TechnologyController::class, "getTechnology"])->name("getTechnology");
+
+Route::get("view-vacancy", [VacancyController::class, "viewVacancy"])->name("viewVacancy");
+Route::post("save-vacancy", [VacancyController::class, "saveVacancy"])->name("saveVacancy");
+Route::post("get-vacancy", [VacancyController::class, "getVacancy"])->name("getVacancy");
+
+
+Route::get("view-growth", [GrowthJourneyController::class, "viewGrowthJourney"])->name("viewGrowth");
+Route::post("save-growth", [GrowthJourneyController::class, "saveGrowthJourney"])->name("saveGrowth");
+Route::post("get-growth", [GrowthJourneyController::class, "getGrowthJourney"])->name("getGrowth");
+
+Route::get("subscribe-page", [SubscribeController::class, "viewSubscribe"])->name("viewSubscribe");
+Route::post("subscribe-data-table", [SubscribeController::class, "SubscribeDataTable"])->name("SubscribeDataTable");
+
+Route::get("seo-page", [SeoController::class, "viewSeo"])->name("viewSeo");
+Route::post("seo-data-table", [SeoController::class, "seoDataTable"])->name("seoDataTable");
+
 
 });
 

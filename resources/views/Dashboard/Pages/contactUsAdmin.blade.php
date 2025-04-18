@@ -44,16 +44,16 @@
                         title: "Name"
                     }, 
                     {
-                        data:'address',
-                        name:'address',
-                        title:'Address'
-                    } ,                   
-                    
-                    {
-                        data: 'phone_number',
-                        name: 'phone_number',
+                        data: 'phone',
+                        name: 'phone',
                         title: "Phone Number"
-                    },
+                    }, 
+                    {
+                        data: 'subject',
+                        name: 'subject',
+                        title: "Subject"
+                    },                                       
+                   
                     {
                         data: 'message',
                         name: 'message',
@@ -63,6 +63,11 @@
                         data: 'created_at_formatted',
                         name: 'created_at',
                         title: "Date and Time"
+                    },
+                    {
+                        data: 'ip_address',
+                        name: 'ip_address',
+                        title: "Ip Address"
                     }
                 ]
             });

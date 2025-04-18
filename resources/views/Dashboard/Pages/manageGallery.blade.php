@@ -11,7 +11,7 @@
                     <x-input type="hidden" name="action" id="action" value="insert"></x-input>
 
                     <x-input-with-label-element name="image" id="local_image" type="file" label="Upload Images"
-                        placeholder="Images" accept="image/*" multiple></x-input-with-label-element>
+                        placeholder="Images" accept="image/*" ></x-input-with-label-element>
                     <x-input-with-label-element div_class="hidden col-md-4 col-sm-12 mb-3" div_id="old_image_div"
                         type="image" name="old_image" id="old_image" placeholder="Old Image"
                         label="Old Image"></x-input-with-label-element>
@@ -98,11 +98,6 @@
                         name: '{{ \App\Models\Gallery::POSITION }}',
                         title: "Position"
                     },
-                    {
-                        data: '{{ \App\Models\Gallery::STATUS }}',
-                        name: '{{ \App\Models\Gallery::STATUS }}',
-                        title: "View Status"
-                    }
                 ]
             });
 
@@ -142,6 +137,15 @@
                             errorMessage(response.message);
                         }
                     },
+                    error: function(xhr) {
+                                if (xhr.status === 422) {
+                                    const errors = xhr.responseJSON.errors;
+                                    const allMessages = Object.values(errors).flat().join('<br>');
+                                    errorMessage(allMessages);
+                                } else {
+                                    errorMessage("Something went wrong");
+                                }
+                            },
                     failure: function(response) {
                         errorMessage(response.message);
                     }

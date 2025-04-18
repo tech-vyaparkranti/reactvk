@@ -7,6 +7,7 @@ use App\Traits\ResponseAPI;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class BlogRequest extends FormRequest
 {
@@ -48,6 +49,7 @@ class BlogRequest extends FormRequest
     public function rules()
     {
         $action = $this->input('action');
+        $id = $this->input('id');   
 
         switch ($action) {
             case 'enable':
@@ -65,7 +67,13 @@ class BlogRequest extends FormRequest
                     Blog::META_KEYWORD => 'bail|nullable',
                     Blog::META_TITLE => 'bail|nullable',
                     Blog::META_DESCRIPTION => 'bail|nullable',
-                    Blog::BLOG_SORTING => 'nullable|integer',
+                    Blog::BLOG_SORTING => [
+                        'required_if:action,insert',
+                        'nullable',
+                        'numeric',
+                        'integer',
+                        Rule::unique('blogs', 'blog_sorting')->ignore($id),
+                    ],
                     Blog::BLOG_STATUS => 'required|in:live,disabled',
                     Blog::IMAGE => 'nullable|image|mimes:jpeg,png,jpg',
                     'blog_images' => 'required|array|max:4',
@@ -82,7 +90,13 @@ class BlogRequest extends FormRequest
                     Blog::META_KEYWORD => 'bail|nullable',
                     Blog::META_TITLE => 'bail|nullable',
                     Blog::META_DESCRIPTION => 'bail|nullable',
-                    Blog::BLOG_SORTING => 'nullable|integer',
+                    Blog::BLOG_SORTING => [
+                        'required_if:action,update',
+                        'nullable',
+                        'numeric',
+                        'integer',
+                        Rule::unique('blogs', 'blog_sorting')->ignore($id),
+                    ],
                     Blog::BLOG_STATUS => 'required|in:live,disabled',
                     Blog::IMAGE => 'nullable|image|mimes:jpeg,png,jpg',
                     'blog_images' => 'nullable|array|max:4',

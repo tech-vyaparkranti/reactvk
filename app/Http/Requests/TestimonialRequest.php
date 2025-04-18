@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class TestimonialRequest extends FormRequest
 {
@@ -23,6 +24,7 @@ class TestimonialRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id');   
         return [
             'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
             'name'=>"bail|required_if:action,update,insert|nullable",
@@ -30,8 +32,14 @@ class TestimonialRequest extends FormRequest
             'designation'=>"bail|required_if:action,update,insert|nullable",
             'review'=>"bail|required_if:action,update,insert|nullable|max:5|numeric",
             'status' =>"bail|required_if:action,update,insert|nullable",
-            'sorting' =>"bail|required_if:action,update,insert|nullable|numeric",
             'image' =>"bail|required_if:action,insert|nullable|image",
+            'sorting' => [
+                    'bail',
+                    'required_if:action,update,insert',
+                    'nullable',
+                    'numeric',
+                    Rule::unique('testimonials', 'sorting')->ignore($id),
+                ],
         ];
     }
 

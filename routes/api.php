@@ -12,7 +12,12 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\HeroBannerController;
+use App\Http\Controllers\TechnologyController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\GrowthJourneyController;
+use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\SeoController;
 
 
 /*
@@ -32,6 +37,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('home-elements',[WebSiteElementsController::class,'homeElements']);
+Route::get('social-link',[WebSiteElementsController::class,'socialMedia']);
+
 Route::get('get-blogs',[BlogController::class,'getBlogs']);
 Route::get('blog-details/{id}',[BlogController::class,'blogDetails']);
 
@@ -44,6 +51,7 @@ Route::get('get-about',[AboutUsController::class,'getAbout']);
 
 // team api
 Route::get('get-team',[TeamInfoController::class,'getTeam']);
+Route::get('other-team',[TeamInfoController::class,'otherTeam']);
 Route::get('team-details/{id}',[TeamInfoController::class,'teamDetail']);
 
 // Partner's api
@@ -61,3 +69,28 @@ Route::get('testimonial-details/{id}',[TestimonialController::class,'Testimonial
 // Gallryies Api
 Route::get('get-gallery',[GalleryController::class,'GalleryData']);
 Route::get('gallery-details/{id}',[GalleryController::class,'GalleryDetails']);
+
+// technology api
+Route::get('get-technology',[TechnologyController::class,'technologyData']);
+Route::get('technology-details/{id}',[TechnologyController::class,'technologyDetails']);
+
+// technology api
+Route::get('get-vacancy',[VacancyController::class,'vacancyData']);
+Route::get('vacancy-details/{id}',[VacancyController::class,'vacancyDetails']);
+
+// growth journey api
+Route::get('get-team-growth',[GrowthJourneyController::class,'GrowthJourneyData']);
+Route::get('team-growth-details/{id}',[GrowthJourneyController::class,'GrowthJourneyDetails']);
+
+// Contact us Api 
+Route::post('save-contact-us',[ContactUsController::class,'saveContactUsDetails']);
+Route::get('contact-element',[ContactUsController::class,'contactWebelement']);
+
+
+// news and letter (subscribe ) api
+Route::post('save-subscribe',[SubscribeController::class,'saveSubscribe']);
+
+// seo form submission api
+Route::post('save-seo',[SeoController::class,'storeSeo']);
+
+

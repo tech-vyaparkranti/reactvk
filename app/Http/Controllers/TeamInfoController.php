@@ -169,11 +169,23 @@ class TeamInfoController extends Controller
 
     public function getTeam()
     {
-        $teams = TeamInfo::where('status',1)->get();
+        $teams = TeamInfo::where('status',1)->where('position', '<', 4)->get();
         $data = [
             'status' => true,
             'success' => true,
             'teams' => $teams,
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function otherTeam()
+    {
+        $otherTeam = TeamInfo::where('status',1)->where('position', '>', 3)->get();
+        $data = [
+            'status' => true,
+            'success' => true,
+            'otherTeam' => $otherTeam,
         ];
 
         return response()->json($data, 200);
