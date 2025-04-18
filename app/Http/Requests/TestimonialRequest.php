@@ -26,7 +26,7 @@ class TestimonialRequest extends FormRequest
     {
         $id = $this->input('id');   
         return [
-            'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
+            'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:testimonials,id",
             'name'=>"bail|required_if:action,update,insert|nullable",
             'description'=>"bail|required_if:action,update,insert|nullable",
             'designation'=>"bail|required_if:action,update,insert|nullable",

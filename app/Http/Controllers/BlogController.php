@@ -96,6 +96,7 @@ class BlogController extends Controller
             $Blog->{Blog::BLOG_DATE} = $request->input(Blog::BLOG_DATE);
             $Blog->{Blog::BLOG_CATEGORY} = $request->input(Blog::BLOG_CATEGORY);
             $Blog->{Blog::META_KEYWORD} = $request->input(Blog::META_KEYWORD);
+            $Blog->{Blog::BLOG_SORTING} = $request->input(Blog::BLOG_SORTING);
             $Blog->{Blog::META_TITLE} = $request->input(Blog::META_TITLE);
             $Blog->{Blog::META_DESCRIPTION} = $request->input(Blog::META_DESCRIPTION);
             $Blog->{Blog::BLOG_STATUS} = $request->input(Blog::BLOG_STATUS);           

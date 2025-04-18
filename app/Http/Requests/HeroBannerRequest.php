@@ -24,7 +24,7 @@ class HeroBannerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
+            'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:hero_banners,id",
             'title'=>"bail|required_if:action,update,insert|nullable",
             'sub_title'=>"bail|required_if:action,update,insert|nullable",
             'status' =>"bail|required_if:action,update,insert|nullable",

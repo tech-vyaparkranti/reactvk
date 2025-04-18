@@ -27,7 +27,7 @@ class GalleryRequest extends FormRequest
     {
         $id = $this->input('id');   
         return [
-            'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:our_services,id",
+            'id'=>"bail|required_if:action,update,enable,disable|nullable|exists:galleries,id",
             'filter_category'=>"bail|required_if:action,update,insert|nullable",
             'status' =>"bail|required_if:action,update,insert|nullable",
             'image' =>"bail|required_if:action,insert|nullable|image",

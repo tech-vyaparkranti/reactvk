@@ -11,7 +11,7 @@
                 <x-input-with-label-element id="image" label="Upload Partner Image" name="image" type="file"
                     accept="image/*" required></x-input-with-label-element>               
 
-                <x-select-with-label id="status" name="status" label="Select Blog Status" required="true">
+                <x-select-with-label id="status" name="status" label="Select Status" required="true">
                     <option value="1">Live</option>
                     <option value="0">Disabled</option>
                 </x-select-with-label>
@@ -78,7 +78,7 @@
                         },
                         orderable: false,
                         searchable: false,
-                        title: "Blog Image"
+                        title: "Partner Image"
                     },                   
                     {
                         data: 'sorting',
