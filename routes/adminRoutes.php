@@ -30,6 +30,7 @@ use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\GrowthJourneyController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\WhyChooseUsController;
 
 
 Route::get("login",[AdminController::class,"Login"])->name("login");
@@ -126,6 +127,9 @@ Route::post("subscribe-data-table", [SubscribeController::class, "SubscribeDataT
 Route::get("seo-page", [SeoController::class, "viewSeo"])->name("viewSeo");
 Route::post("seo-data-table", [SeoController::class, "seoDataTable"])->name("seoDataTable");
 
+Route::get("view-choose", [WhyChooseUsController::class, "viewWhyChooseUs"])->name("viewWhyChooseUs");
+Route::post("save-choose", [WhyChooseUsController::class, "saveWhyChooseUs"])->name("saveWhyChooseUs");
+Route::post("get-choose", [WhyChooseUsController::class, "chooseData"])->name("chooseData");
 
 });
 

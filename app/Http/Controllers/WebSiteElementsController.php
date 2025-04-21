@@ -40,6 +40,10 @@ class WebSiteElementsController extends Controller
         "blog_short_description",
         'seo_image',
         'contact_timing',
+        'service_banner',
+        'service_banner_content',
+        'blog_banner',
+        'blog_banner_content',
     ];
     public function addWebSiteElements()
     {

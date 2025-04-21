@@ -167,6 +167,13 @@
                     <div data-i18n="Analytics">Manage Team Growth Journey</div>
                 </a>
             </li>
+
+            <li class="menu-item">
+                <a href="{{ route('viewWhyChooseUs') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Analytics">Manage Choose Us</div>
+                </a>
+            </li>
             
        
     </ul>

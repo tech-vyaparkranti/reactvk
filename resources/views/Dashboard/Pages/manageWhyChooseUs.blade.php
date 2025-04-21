@@ -1,18 +1,16 @@
 @extends('layouts.dashboardLayout')
-@section('title', 'About Us')
+@section('title', 'Why Choose us')
 @section('content')
 
-    <x-content-div heading="Manage About Us">
-        <x-card-element header="Add About Us Data ">
+    <x-content-div heading="Manage Why Choose us">
+        <x-card-element header="Add Why Choose us Data ">
             <x-form-element method="POST" enctype="multipart/form-data" id="submitForm" action="javascript:">
                 <x-input type="hidden" name="id" id="id" value=""></x-input>
                 <x-input type="hidden" name="action" id="action" value="insert"></x-input>
 
-                <x-input-with-label-element id="image" label="Upload About Image" name="image" type="file"
-                    accept="image/*" required></x-input-with-label-element>
-                <x-input-with-label-element id="title" label="About title" name="title"
+                <x-input-with-label-element id="title" label=" title" name="title"
                     required></x-input-with-label-element>
-                <x-text-area-with-label id="content" label="About Description" name="description"
+                <x-text-area-with-label id="content" label=" Description" name="description"
                     required></x-text-area-with-label>
 
                 <x-select-with-label id="blog_status" name="status" label="Select Status" required="true">
@@ -25,7 +23,7 @@
 
         </x-card-element>
 
-        <x-card-element header="About Data">
+        <x-card-element header="Choose Us Data">
             <x-data-table>
 
             </x-data-table>
@@ -49,7 +47,7 @@
                 serverSide: true,
                 "scrollX": true,
                 ajax: {
-                    url: "{{ route('getAboutData') }}",
+                    url: "{{ route('chooseData') }}",
                     type: 'POST',
                     data: {
                         '_token': '{{ csrf_token() }}'
@@ -68,30 +66,16 @@
                         searchable: false,
                         title: 'Action'
                     },
-                    {
-                        data: 'image',
-                        render: function(data, type, row) {
-                            let image = '';
-                            if (data) {
-                                image = '<img alt="Image Link" src="' + data +
-                                    '" class="img-thumbnail">'
-                            }
-                            return image;
-                        },
-                        orderable: false,
-                        searchable: false,
-                        title: "About Image"
-                    },
-                   
+                    
                     {
                         data: 'title',
                         name: 'title',
-                        title: 'About Title'
+                        title: ' Title'
                     },
                     {
                         data: 'description',
                         name: 'description',
-                        title: 'About Content'
+                        title: ' Content'
                     },
 
                 ],
@@ -105,9 +89,7 @@
             let row = $.parseJSON(atob($(this).data("row")));
             if (row['id']) {
                 $("#id").val(row['id']);
-                $("#image").attr("required", false);
                 $("#title").val(row['title']);
-               
                 $("#blog_status").val(row['status']);
                 $("#action").val("update");
                 $("#content").val(row['description']);
@@ -144,7 +126,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'POST',
-                            url: '{{ route('saveAbout') }}',
+                            url: '{{ route('saveWhyChooseUs') }}',
                             data: {
                                 id: id,
                                 action: action,
@@ -175,7 +157,7 @@
                 var form = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('saveAbout') }}',
+                    url: '{{ route('saveWhyChooseUs') }}',
                     data: form,
                     cache: false,
                     contentType: false,

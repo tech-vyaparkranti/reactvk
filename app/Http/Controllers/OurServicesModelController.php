@@ -6,6 +6,7 @@ use App\Http\Requests\OurServicesRequest;
 use App\Http\Requests\StoreOurServicesModelRequest;
 use App\Http\Requests\UpdateOurServicesModelRequest;
 use App\Models\OurServicesModel;
+use App\Models\WebSiteElements;
 use App\Traits\CommonFunctions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -134,6 +135,7 @@ class OurServicesModelController extends Controller
             $updateModel->{OurServicesModel::SERVICE_NAME} = $request->input(OurServicesModel::SERVICE_NAME);
             $updateModel->{OurServicesModel::BANNER_IMAGE} = $image_url;
             $updateModel->{OurServicesModel::SERVICE_IMAGE} = $serviceImageUrls; 
+            $updateModel->{OurServicesModel::SHORT_DESC} = $request->input(OurServicesModel::SHORT_DESC);
             $updateModel->{OurServicesModel::SERVICE_DETAILS} = $request->input(OurServicesModel::SERVICE_DETAILS);
             $updateModel->{OurServicesModel::POSITION} = $request->input(OurServicesModel::POSITION);
             $updateModel->{OurServicesModel::CATEGORY} = $request->input(OurServicesModel::CATEGORY);
@@ -242,6 +244,18 @@ class OurServicesModelController extends Controller
             'status' => true,
             'success' => true,
             'service' => $service,
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function serviceBanner()
+    {
+        $serviceBanner = WebSiteElements::where('status',1)->whereIn('element',['service_banner','service_banner_content'])->pluck('element_details', 'element')->toArray();
+        $data = [
+            'status' => true,
+            'success' => true,
+            'serviceBanner' => $serviceBanner,
         ];
 
         return response()->json($data, 200);

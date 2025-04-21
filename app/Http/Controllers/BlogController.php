@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
+use App\Models\WebSiteElements;
 use App\Traits\CommonFunctions;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -217,6 +218,18 @@ class BlogController extends Controller
             'status' => true,
             'success' => true,
             'blog' => $blog,
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function blogBanner()
+    {
+        $blogBanner = WebSiteElements::where('status',1)->whereIn('element',['blog_banner','blog_banner_content'])->pluck('element_details', 'element')->toArray();
+        $data = [
+            'status' => true,
+            'success' => true,
+            'blogBanner' => $blogBanner,
         ];
 
         return response()->json($data, 200);

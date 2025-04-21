@@ -18,6 +18,7 @@ use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\GrowthJourneyController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\WhyChooseUsController;
 
 
 /*
@@ -41,9 +42,12 @@ Route::get('social-link',[WebSiteElementsController::class,'socialMedia']);
 
 Route::get('get-blogs',[BlogController::class,'getBlogs']);
 Route::get('blog-details/{id}',[BlogController::class,'blogDetails']);
+Route::get('blog-banner',[BlogController::class,'blogBanner']);
+
 
 Route::get('get-service',[OurServicesModelController::class,'getService']);
 Route::get('service-details/{id}',[OurServicesModelController::class,'serviceDetail']);
+Route::get('service-banner',[OurServicesModelController::class,'serviceBanner']);
 
 
 // About Api 
@@ -93,5 +97,9 @@ Route::post('save-subscribe',[SubscribeController::class,'saveSubscribe']);
 
 // seo form submission api
 Route::post('save-seo',[SeoController::class,'storeSeo']);
+
+// why choose us api
+Route::get('get-choose-data',[WhyChooseUsController::class,'getChooseUs']);
+
 
 
