@@ -3,12 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Traits\ResponseAPI;
 
-class WhyChooseUsRequest extends FormRequest
+
+class ReviewRequest extends FormRequest
 {
+    use ResponseAPI;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -25,11 +27,12 @@ class WhyChooseUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>"bail|required_if:action,update,insert|nullable|string|max:500",
-            'description'=>"bail|required_if:action,update,insert|nullable",
-            "action"=>"bail|required|in:insert,update,enable,disable",
-            'status'=>"bail|required_if:action,update,insert|nullable",
-
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'comments' => 'required',
+            'review' => 'required|integer',
+            'blog_id' => 'required|integer',
+            'phone' => 'required|digits:10',
         ];
     }
 

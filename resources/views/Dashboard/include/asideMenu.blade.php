@@ -113,65 +113,98 @@
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewTeamInfo') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-group"></i>
                     <div data-i18n="Analytics">Manage Team</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewAboutInfo') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-info-circle"></i>
                     <div data-i18n="Analytics">Manage About Us</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewPartner') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-star"></i>
                     <div data-i18n="Analytics">Manage Partner's</div>
                 </a>
             </li>
 
             <li class="menu-item">
                 <a href="{{ route('viewHeroBanner') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-rocket"></i>
                     <div data-i18n="Analytics">Manage Hero Banner</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewTestimonial') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-message"></i>
                     <div data-i18n="Analytics">Manage Testimonial</div>
                 </a>
             </li>
             
             <li class="menu-item">
                 <a href="{{ route('viewGallery') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-image"></i>
                     <div data-i18n="Analytics">Manage Gallery</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewTechnology') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-laptop"></i>
                     <div data-i18n="Analytics">Manage Technology</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewVacancy') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-user-plus"></i>
                     <div data-i18n="Analytics">Manage Vacancy</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="{{ route('viewGrowth') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-bar-chart"></i>
                     <div data-i18n="Analytics">Manage Team Growth Journey</div>
                 </a>
             </li>
 
             <li class="menu-item">
                 <a href="{{ route('viewWhyChooseUs') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <i class="menu-icon tf-icons bx bx-check-circle"></i>
                     <div data-i18n="Analytics">Manage Choose Us</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('viewPackages') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-package"></i>
+                    <div data-i18n="Analytics">Manage Packages</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('viewQuotes') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-book"></i>
+                    <div data-i18n="Analytics">Quotes Data</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('viewApplied') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-clipboard"></i>
+                    <div data-i18n="Analytics">Applied vacancies Data</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewReview') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-star"></i>
+                    <div data-i18n="Analytics">Manage Review Data</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewVideoGallery') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-video"></i>
+                    <div data-i18n="Analytics">Manage Video Gallery</div>
                 </a>
             </li>
             

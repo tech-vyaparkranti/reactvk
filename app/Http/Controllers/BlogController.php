@@ -213,11 +213,13 @@ class BlogController extends Controller
 
     public function blogDetails($id)
     {
-        $blog = Blog::where('id',$id)->first();
+        $blog = Blog::where('id',$id)->with("review")->first();
+        $reviews = $blog->review;
         $data = [
             'status' => true,
             'success' => true,
             'blog' => $blog,
+            'reviews' => $reviews,
         ];
 
         return response()->json($data, 200);

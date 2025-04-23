@@ -29,8 +29,7 @@ trait CommonFunctions{
 
     public function uploadLocalFile(FormRequest $fileObject,$key_name,$upload_path,$file_name = "",int $height = null,int $width = null):array{
         try{
-            $uploadFile = $fileObject->file($key_name);
-             
+            $uploadFile = $fileObject->file($key_name);             
             $fileName = $uploadFile->getClientOriginalName();
 
             $fileNameWithoutExtension = pathinfo($fileName, PATHINFO_FILENAME);

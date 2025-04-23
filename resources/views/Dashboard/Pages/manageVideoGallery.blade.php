@@ -1,29 +1,30 @@
 @extends('layouts.dashboardLayout')
-@section('title', 'Why Choose us')
+@section('title', 'Manage Video Gallery')
 @section('content')
 
-    <x-content-div heading="Manage Why Choose us">
-        <x-card-element header="Add Why Choose us Data ">
+    <x-content-div heading="Manage Video Gallery">
+        <x-card-element header="Add Video Gallery ">
             <x-form-element method="POST" enctype="multipart/form-data" id="submitForm" action="javascript:">
                 <x-input type="hidden" name="id" id="id" value=""></x-input>
                 <x-input type="hidden" name="action" id="action" value="insert"></x-input>
 
-                <x-input-with-label-element id="title" label=" title" name="title"
-                    required></x-input-with-label-element>
-                <x-text-area-with-label id="content" label=" Description" name="description"
-                    required></x-text-area-with-label>
+                <x-input-with-label-element name="video_link" id="image" type="text"
+                    label="Upload You Tube Video Link" placeholder="You Tube Video Link"
+                    accept="url"></x-input-with-label-element>
 
-                <x-select-with-label id="blog_status" name="status" label="Select Status" required="true">
+                <x-input-with-label-element required name="title" id="title" placeholder="Title"
+                    label="Title"></x-input-with-label-element>
+
+                <x-select-with-label id="team_status" name="status" label="Select Status" required="true">
                     <option value="1">Live</option>
                     <option value="0">Disabled</option>
                 </x-select-with-label>
-
                 <x-form-buttons></x-form-buttons>
             </x-form-element>
 
         </x-card-element>
 
-        <x-card-element header="Choose Us Data">
+        <x-card-element header="Video Gallery Data">
             <x-data-table>
 
             </x-data-table>
@@ -41,47 +42,73 @@
         let site_url = '{{ url('/') }}';
         let table = "";
         $(function() {
-
             table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
                 "scrollX": true,
                 ajax: {
-                    url: "{{ route('chooseData') }}",
+                    url: "{{ route('getVideoGallery') }}",
                     type: 'POST',
                     data: {
                         '_token': '{{ csrf_token() }}'
                     }
                 },
                 columns: [{
-                        data: "DT_RowIndex",
+                        data: 'id',
+                        name: 'id',
+                        title: "Id"
+                    },
+                    {
+                        data: 'video_link',
                         orderable: false,
                         searchable: false,
-                        title: "Sr.No."
+                        render: function(data, type, meta) {
+                            if (data) {
+                                // Try to extract the video ID from YouTube URL formats
+                                let videoId = '';
+                                const youtubeMatch = data.match(
+                                    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?/]+)/
+                                    );
+
+                                if (youtubeMatch && youtubeMatch[1]) {
+                                    videoId = youtubeMatch[1];
+                                }
+
+                                if (videoId) {
+                                    return `
+                                    <iframe 
+                                        width="200" 
+                                        height="120" 
+                                        src="https://www.youtube.com/embed/${videoId}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                `;
+                                } else {
+                                    return 'Invalid YouTube URL';
+                                }
+                            } else {
+                                return 'No Video';
+                            }
+                        },
+                        title: "Video Link"
+                    },
+                    {
+                        data: 'title',
+                        name: 'title',
+                        title: "Title"
                     },
                     {
                         data: 'action',
                         name: 'action',
                         orderable: false,
                         searchable: false,
-                        title: 'Action'
+                        title: "Action"
                     },
-                    
-                    {
-                        data: 'title',
-                        name: 'title',
-                        title: ' Title'
-                    },
-                    {
-                        data: 'description',
-                        name: 'description',
-                        title: ' Content'
-                    },
-
-                ],
-                order: [
-                    [2, "desc"]
                 ]
+
+
             });
 
         });
@@ -89,14 +116,10 @@
             let row = $.parseJSON(atob($(this).data("row")));
             if (row['id']) {
                 $("#id").val(row['id']);
+                $("#image").val(row['video_link']);
                 $("#title").val(row['title']);
-                $("#blog_status").val(row['status']);
+                $("#team_status").val(row['status']);
                 $("#action").val("update");
-                $("#content").val(row['description']);
-                $('#content').summernote('destroy');
-                $('#content').summernote({
-                    focus: true
-                });
                 scrollToDiv();
             } else {
                 errorMessage("Something went wrong. Code 101");
@@ -126,7 +149,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'POST',
-                            url: '{{ route('saveWhyChooseUs') }}',
+                            url: '{{ route('saveVideoGallery') }}',
                             data: {
                                 id: id,
                                 action: action,
@@ -151,13 +174,12 @@
             }
         }
 
-
         $(document).ready(function() {
             $("#submitForm").on("submit", function() {
                 var form = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('saveWhyChooseUs') }}',
+                    url: '{{ route('saveVideoGallery') }}',
                     data: form,
                     cache: false,
                     contentType: false,

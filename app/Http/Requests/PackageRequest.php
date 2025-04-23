@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class WhyChooseUsRequest extends FormRequest
+class PackageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,26 @@ class WhyChooseUsRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id');   
+
         return [
             'title'=>"bail|required_if:action,update,insert|nullable|string|max:500",
-            'description'=>"bail|required_if:action,update,insert|nullable",
+            'category'=>"bail|required_if:action,update,insert|nullable",
+            'package_class'=>"bail|required_if:action,update,insert|nullable",
+            'package_details'=>"bail|required_if:action,update,insert|nullable",
+            'price'=>"bail|required_if:action,update,insert|nullable|integer",
             "action"=>"bail|required|in:insert,update,enable,disable",
             'status'=>"bail|required_if:action,update,insert|nullable",
-
+            'position' => [
+                    'bail',
+                    'required_if:action,update,insert',
+                    'nullable',
+                    'numeric',
+                    Rule::unique('packages', 'position')->ignore($id),
+                ],
         ];
+        
     }
-
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

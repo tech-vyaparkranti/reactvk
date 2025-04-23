@@ -1,18 +1,32 @@
 @extends('layouts.dashboardLayout')
-@section('title', 'Why Choose us')
+@section('title', 'Packages')
 @section('content')
 
-    <x-content-div heading="Manage Why Choose us">
-        <x-card-element header="Add Why Choose us Data ">
+    <x-content-div heading="Manage Packages">
+        <x-card-element header="Add Packages Data ">
             <x-form-element method="POST" enctype="multipart/form-data" id="submitForm" action="javascript:">
                 <x-input type="hidden" name="id" id="id" value=""></x-input>
                 <x-input type="hidden" name="action" id="action" value="insert"></x-input>
 
-                <x-input-with-label-element id="title" label=" title" name="title"
+                <x-input-with-label-element id="title" label="Title" name="title"
                     required></x-input-with-label-element>
-                <x-text-area-with-label id="content" label=" Description" name="description"
+                <x-select-with-label id="category" name="category" label="Select Category" required="true">
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Half Yearly">Half Yearly</option>
+                </x-select-with-label>
+                <x-select-with-label id="package_class" name="package_class" label="Select Package Class" required="true">
+                    <option value="Basic">Basic</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Standard">Standard</option>
+                </x-select-with-label>
+                <x-text-area-with-label id="content" label="Package DEtails" name="package_details"
                     required></x-text-area-with-label>
-
+                <x-input-with-label-element id="price" label="Price" name="price"
+                    required></x-input-with-label-element>
+                <x-input-with-label-element id="position" label="Position" name="position"
+                    required></x-input-with-label-element>
                 <x-select-with-label id="blog_status" name="status" label="Select Status" required="true">
                     <option value="1">Live</option>
                     <option value="0">Disabled</option>
@@ -23,7 +37,7 @@
 
         </x-card-element>
 
-        <x-card-element header="Choose Us Data">
+        <x-card-element header="Packages Data">
             <x-data-table>
 
             </x-data-table>
@@ -47,7 +61,7 @@
                 serverSide: true,
                 "scrollX": true,
                 ajax: {
-                    url: "{{ route('chooseData') }}",
+                    url: "{{ route('packageData') }}",
                     type: 'POST',
                     data: {
                         '_token': '{{ csrf_token() }}'
@@ -70,12 +84,32 @@
                     {
                         data: 'title',
                         name: 'title',
-                        title: ' Title'
+                        title: 'Title'
                     },
                     {
-                        data: 'description',
-                        name: 'description',
-                        title: ' Content'
+                        data: 'package_details',
+                        name: 'package_details',
+                        title: 'Package Details'
+                    },
+                    {
+                        data: 'category',
+                        name: 'category',
+                        title: 'Category'
+                    },
+                    {
+                        data: 'package_class',
+                        name: 'package_class',
+                        title: 'Package Class'
+                    },
+                    {
+                        data: 'price',
+                        name: 'price',
+                        title: 'Price'
+                    },
+                    {
+                        data: 'position',
+                        name: 'position',
+                        title: 'Position'
                     },
 
                 ],
@@ -90,9 +124,14 @@
             if (row['id']) {
                 $("#id").val(row['id']);
                 $("#title").val(row['title']);
+                $("#category").val(row['category']);
+                $("#package_class").val(row['package_class']);
+                $("#price").val(row['price']);
+                $("#position").val(row['position']);
+
                 $("#blog_status").val(row['status']);
                 $("#action").val("update");
-                $("#content").val(row['description']);
+                $("#content").val(row['package_details']);
                 $('#content').summernote('destroy');
                 $('#content').summernote({
                     focus: true
@@ -126,7 +165,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: 'POST',
-                            url: '{{ route('saveWhyChooseUs') }}',
+                            url: '{{ route('savePackages') }}',
                             data: {
                                 id: id,
                                 action: action,
@@ -157,7 +196,7 @@
                 var form = new FormData(this);
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('saveWhyChooseUs') }}',
+                    url: '{{ route('savePackages') }}',
                     data: form,
                     cache: false,
                     contentType: false,

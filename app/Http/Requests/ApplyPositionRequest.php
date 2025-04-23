@@ -3,12 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use App\Traits\ResponseAPI;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class WhyChooseUsRequest extends FormRequest
+class ApplyPositionRequest extends FormRequest
 {
+    use ResponseAPI;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -25,23 +27,18 @@ class WhyChooseUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>"bail|required_if:action,update,insert|nullable|string|max:500",
-            'description'=>"bail|required_if:action,update,insert|nullable",
-            "action"=>"bail|required|in:insert,update,enable,disable",
-            'status'=>"bail|required_if:action,update,insert|nullable",
-
+            "name"=>"required|string|max:50",
+            "position_analytics" => "required|string",
+            "department"=>"required|string|max:50",
+            "email"=>"required|email|max:100",
+            "phone"=>"required|integer",
+            "resume"=>"required|file",
+            "cover_letter"=>"required|string",
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            response()->json([
-                'status' => false,
-                'message' => $validator->errors()->first(),
-                'errors' => $validator->errors(),
-                'data' => null,
-            ], 422)
-        );
+        throw new HttpResponseException($this->error($validator->getMessageBag()->first(),422));
     }
 }

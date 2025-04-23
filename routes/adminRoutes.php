@@ -31,6 +31,12 @@ use App\Http\Controllers\GrowthJourneyController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\WhyChooseUsController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\GetQuotesController;
+use App\Http\Controllers\ApplyPositionController;
+use App\Http\Controllers\BlogReviewController;
+use App\Http\Controllers\VideoGalleryController;
+
 
 
 Route::get("login",[AdminController::class,"Login"])->name("login");
@@ -130,6 +136,25 @@ Route::post("seo-data-table", [SeoController::class, "seoDataTable"])->name("seo
 Route::get("view-choose", [WhyChooseUsController::class, "viewWhyChooseUs"])->name("viewWhyChooseUs");
 Route::post("save-choose", [WhyChooseUsController::class, "saveWhyChooseUs"])->name("saveWhyChooseUs");
 Route::post("get-choose", [WhyChooseUsController::class, "chooseData"])->name("chooseData");
+
+Route::get("view-package", [PackageController::class, "viewPackages"])->name("viewPackages");
+Route::post("save-package", [PackageController::class, "savePackages"])->name("savePackages");
+Route::post("get-package", [PackageController::class, "packageData"])->name("packageData");
+
+Route::get("quotes-page", [GetQuotesController::class, "viewQuotes"])->name("viewQuotes");
+Route::post("quotes-data-table", [GetQuotesController::class, "quotesDataTable"])->name("quotesDataTable");
+
+Route::get("applied-position-page", [ApplyPositionController::class, "viewApplied"])->name("viewApplied");
+Route::post("applied-data-table", [ApplyPositionController::class, "appliedDataTable"])->name("appliedDataTable");
+
+Route::get("review-page", [BlogReviewController::class, "viewReview"])->name("viewReview");
+Route::post("review-data-table", [BlogReviewController::class, "reviewDataTable"])->name("reviewDataTable");
+Route::post("change-status-review", [BlogReviewController::class, "changeReview"])->name("changeReview");
+
+Route::get("show-video", [VideoGalleryController::class, "viewVideoGallery"])->name("viewVideoGallery");
+Route::post("save-video-gallery", [VideoGalleryController::class, "saveVideoGallery"])->name("saveVideoGallery");
+Route::post("get-video", [VideoGalleryController::class, "getVideoGallery"])->name("getVideoGallery");
+
 
 });
 

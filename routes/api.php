@@ -19,6 +19,12 @@ use App\Http\Controllers\GrowthJourneyController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\WhyChooseUsController;
+use App\Http\Controllers\ApplyPositionController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\GetQuotesController;
+use App\Http\Controllers\BlogReviewController;
+use App\Http\Controllers\VideoGalleryController;
+
 
 
 /*
@@ -100,6 +106,15 @@ Route::post('save-seo',[SeoController::class,'storeSeo']);
 
 // why choose us api
 Route::get('get-choose-data',[WhyChooseUsController::class,'getChooseUs']);
+Route::post('save-apply-data',[ApplyPositionController::class,'savePosition']);
+Route::post('save-quotes',[GetQuotesController::class,'saveQuotes']);
+
+Route::get('get-packages',[PackageController::class,'getPackage']);
+
+Route::post('save-review',[BlogReviewController::class,'saveReview']);
+
+Route::get('get-video-gallery',[VideoGalleryController::class,'videoGalleryData']);
+
 
 
 

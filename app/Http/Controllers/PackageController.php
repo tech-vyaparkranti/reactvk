@@ -7,11 +7,11 @@ use App\Traits\CommonFunctions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\WhyChooseUsRequest;
+use App\Http\Requests\PackageRequest;
 use Yajra\DataTables\Facades\DataTables;
-use App\Models\whyChooseUs;
+use App\Models\Package;
 
-class WhyChooseUsController extends Controller
+class PackageController extends Controller
 {
     use CommonFunctions;
     /**
@@ -19,13 +19,13 @@ class WhyChooseUsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function viewWhyChooseUs()
+    public function viewPackages()
     {
         
-        return view("Dashboard.Pages.manageWhyChooseUs");
+        return view("Dashboard.Pages.managePackages");
     }
 
-    public function saveWhyChooseUs(WhyChooseUsRequest $request)
+    public function savePackages(PackageRequest $request)
     {
         Cache::forget("about_us");
         switch ($request->input("action")) {
@@ -47,20 +47,15 @@ class WhyChooseUsController extends Controller
         return response()->json($return);
     }
 
-    public function ImageUpload(WhyChooseUsRequest $request)
+    public function insertData(PackageRequest $request)
     {
-        $maxId = whyChooseUs::max(whyChooseUs::ID);
-        $maxId += 1;
-        $timeNow = strtotime($this->timeNow());
-        $maxId .= "_$timeNow";
-        return $this->uploadLocalFile($request, 'image', "/images/about_us/", "about_us_$maxId");
-    }
-
-    public function insertData(WhyChooseUsRequest $request)
-    {
-            $createNewRow = new whyChooseUs();
+            $createNewRow = new Package();
+            $createNewRow->category = $request->category;
+            $createNewRow->package_class = $request->package_class;
+            $createNewRow->price = $request->price;
             $createNewRow->title = $request->title;
-            $createNewRow->description = $request->description;
+            $createNewRow->package_details = $request->package_details;
+            $createNewRow->position = $request->position;
             $createNewRow->status = $request->status;
             $createNewRow->save();
             $return = $this->returnMessage("Saved successfully.", true);
@@ -68,26 +63,29 @@ class WhyChooseUsController extends Controller
         return $return;
     }
 
-    public function updateData(WhyChooseUsRequest $request)
+    public function updateData(PackageRequest $request)
     {
-        
-            $updateModel = whyChooseUs::find($request->id);
+            $updateModel = Package::find($request->id);
         if($updateModel){
             
+            $updateModel->category = $request->category;
+            $updateModel->package_class = $request->package_class;
+            $updateModel->price = $request->price;
             $updateModel->title = $request->title;
-            $updateModel->description = $request->description;
-            $updateModel->status = 1;
+            $updateModel->package_details = $request->package_details;
+            $updateModel->position = $request->position;
+            $updateModel->status = $request->status;
             $updateModel->save();
-            $return = $this->returnMessage("Saved successfully.", true);
+            $return = $this->returnMessage("update successfully.", true);
         }else{
                 $return = ["status"=>false,"message"=>"Details not found.","data"=>null];
             }
         return $return;
     }
 
-    public function enableRow(WhyChooseUsRequest $request)
+    public function enableRow(PackageRequest $request)
     {
-        $check = whyChooseUs::where('id', $request->id)->first();
+        $check = Package::where('id', $request->id)->first();
         if ($check) {
             $check->status = 1;
             $check->save();
@@ -98,9 +96,9 @@ class WhyChooseUsController extends Controller
         return $return;
     }
 
-    public function disableRow(WhyChooseUsRequest $request)
+    public function disableRow(PackageRequest $request)
     {
-        $check = whyChooseUs::where('id', $request->id)->first();
+        $check = Package::where('id', $request->id)->first();
         if ($check) {
             $check->status = 0;
             $check->save();
@@ -112,10 +110,10 @@ class WhyChooseUsController extends Controller
         return $return;
     }
 
-    public function chooseData()
+    public function packageData()
     {
-        $query = whyChooseUs::select(
-            'title' ,'description' ,'status','id'
+        $query = Package::select(
+            'category','package_class','price' ,'package_details','status','position','id','title'
         );
         return DataTables::of($query)
             ->addIndexColumn()
@@ -130,17 +128,17 @@ class WhyChooseUsController extends Controller
                     return $this->addDiv($btn_edit . $btn_enable);
                 }
             })
-            ->rawColumns(['action','choose_details'])
+            ->rawColumns(['action','package_details'])
             ->make(true);
     }
 
-    public function getChooseUs()
+    public function getPackage()
     {
-        $chhoseUs = whyChooseUs::where('status', 1)->orderBy('updated_at', 'desc')->first();
+        $packages = Package::where('status', 1)->get();
         $data = [
             'status' => true,
             'success' => true,
-            'chhoseUs' => $chhoseUs,
+            'packages' => $packages,
         ];
 
         return response()->json($data, 200);

@@ -44,6 +44,7 @@ class WebSiteElementsController extends Controller
         'service_banner_content',
         'blog_banner',
         'blog_banner_content',
+        'international_address',
     ];
     public function addWebSiteElements()
     {

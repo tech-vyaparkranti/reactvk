@@ -78,7 +78,7 @@ class ContactUsController extends Controller
 
     public function contactWebelement()
     {
-        $elements = WebSiteElements::where('status','1')->whereIn('element',['Address','mobile','Map_link','contact_timing'])->get();
+        $elements = WebSiteElements::where('status','1')->whereIn('element',['Address','mobile','Map_link','contact_timing','international_address'])->get();
         $elementData = $elements->pluck('element_details', 'element')->toArray();
         $data = [
             'status' => true,

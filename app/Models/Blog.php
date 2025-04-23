@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\models\BlogReview;
 
 class Blog extends Model
 {
@@ -44,5 +45,10 @@ class Blog extends Model
         static::creating(function ($blog) {
             $blog->slug = Str::slug($blog->title, '-');
         });
+    }
+
+    public function review()
+    {
+       return $this->hasMany(BlogReview::class ,'blog_id');
     }
 }
