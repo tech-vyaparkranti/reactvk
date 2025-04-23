@@ -183,7 +183,7 @@
         <div class="logo-icon">
             <i class="fas fa-bolt"></i>
         </div>
-        <div class="company-name">VYAPARKRANTI</div>
+        <div class="company-name">VYAPAR KRANTI</div>
         <div class="tagline">Empowering Business Growth</div>
         
     </div>
