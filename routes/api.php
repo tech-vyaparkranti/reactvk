@@ -24,7 +24,8 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\GetQuotesController;
 use App\Http\Controllers\BlogReviewController;
 use App\Http\Controllers\VideoGalleryController;
-
+use App\Http\Controllers\ChooseNowCardController;
+use App\Http\Controllers\FaqController;
 
 
 /*
@@ -114,6 +115,12 @@ Route::get('get-packages',[PackageController::class,'getPackage']);
 Route::post('save-review',[BlogReviewController::class,'saveReview']);
 
 Route::get('get-video-gallery',[VideoGalleryController::class,'videoGalleryData']);
+
+Route::get('get-card-data',[ChooseNowCardController::class,'chooseNowCardData']);
+
+Route::get('get-faq-data',[FaqController::class,'faqData']);
+
+
 
 
 

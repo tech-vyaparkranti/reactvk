@@ -36,6 +36,8 @@ use App\Http\Controllers\GetQuotesController;
 use App\Http\Controllers\ApplyPositionController;
 use App\Http\Controllers\BlogReviewController;
 use App\Http\Controllers\VideoGalleryController;
+use App\Http\Controllers\ChooseNowCardController;
+use App\Http\Controllers\FaqController;
 
 
 
@@ -154,6 +156,14 @@ Route::post("change-status-review", [BlogReviewController::class, "changeReview"
 Route::get("show-video", [VideoGalleryController::class, "viewVideoGallery"])->name("viewVideoGallery");
 Route::post("save-video-gallery", [VideoGalleryController::class, "saveVideoGallery"])->name("saveVideoGallery");
 Route::post("get-video", [VideoGalleryController::class, "getVideoGallery"])->name("getVideoGallery");
+
+Route::get("show-choose-card", [ChooseNowCardController::class, "viewChooseNowCard"])->name("viewChooseNowCard");
+Route::post("save-choose-card", [ChooseNowCardController::class, "saveChooseNowCard"])->name("saveChooseNowCard");
+Route::post("get-choose-card", [ChooseNowCardController::class, "getChooseNowCard"])->name("getChooseNowCard");
+
+Route::get("show-faq", [FaqController::class, "viewFaq"])->name("viewFaq");
+Route::post("save-faq", [FaqController::class, "saveFaq"])->name("saveFaq");
+Route::post("get-faq", [FaqController::class, "getFaq"])->name("getFaq");
 
 
 });

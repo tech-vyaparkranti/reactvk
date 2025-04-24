@@ -207,6 +207,18 @@
                     <div data-i18n="Analytics">Manage Video Gallery</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('viewChooseNowCard') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-card"></i>
+                    <div data-i18n="Analytics">Manage Choose Now Card's</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('viewFaq') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-question-mark"></i>
+                    <div data-i18n="Analytics">Manage FAQ</div>
+                </a>
+            </li>
             
        
     </ul>
