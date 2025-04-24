@@ -46,6 +46,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('home-elements',[WebSiteElementsController::class,'homeElements']);
 Route::get('social-link',[WebSiteElementsController::class,'socialMedia']);
+Route::get('footer-content',[WebSiteElementsController::class,'footerContent']);
+
 
 Route::get('get-blogs',[BlogController::class,'getBlogs']);
 Route::get('blog-details/{id}',[BlogController::class,'blogDetails']);

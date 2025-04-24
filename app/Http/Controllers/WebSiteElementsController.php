@@ -45,6 +45,7 @@ class WebSiteElementsController extends Controller
         'blog_banner',
         'blog_banner_content',
         'international_address',
+        'footer_content',
     ];
     public function addWebSiteElements()
     {
@@ -199,5 +200,17 @@ class WebSiteElementsController extends Controller
             'elements' => $elementData,
         ];
         return response()->json($data, 200);
+    }
+
+    public function footerContent()
+    {
+        $footerContent = WebSiteElements::where('status','1')->where('element','footer_content')->value('element_details');
+        $data = [
+            'status' => true,
+            'success' => true,
+            'footerContent' => $footerContent,
+        ];
+        return response()->json($data, 200);
+
     }
 }
