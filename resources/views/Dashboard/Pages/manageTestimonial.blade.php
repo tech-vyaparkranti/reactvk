@@ -89,7 +89,7 @@
                         },
                         orderable: false,
                         searchable: false,
-                        title: "Testimonial Image"
+                        title: "Image"
                     },
 
                     {
