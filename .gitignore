@@ -16,7 +16,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-
-resources/views/Dashboard/include/header.blade.php
-# resources/views/include/script.blade.php
-# resources/views/layouts/dashboardLayout.blade.php
